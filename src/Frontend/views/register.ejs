@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Registro</title>
+        <link rel="stylesheet" type="text/css" href="/style.css">
+    </head>
+    <body>
+        <form action="/register" method="post">
+            <h1>Registro</h1>
+
+            <label for="name">Usuário</label>
+            <input type="text" id="name" name="name" placeholder="Digite seu usuário" required>
+      
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+      
+            <button type="submit">Registrar</button>
+            <button type="button" onclick="redirect('login')">Login</button>
+            <% if (locals.message) { %>
+                <h3><%= locals.message %></h3>
+            <% } %>
+          </form>
+
+          <script src="redirectbutton.js"></script>
+    </body>
+</html>

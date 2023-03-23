@@ -21,5 +21,6 @@ export class CreateUserCase{
         user.password = await bcrypt.hash(user.password, hash)
 
         await this.usersRepository.save(user);
+        return user.id
     }
 }

@@ -8,7 +8,7 @@ export class SQLiteUserRepository implements IUserRepository{
 
     constructor(){
         this.db = new sqlite3.Database('database');
-        //this.db.run('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, password TEXT)')
+        this.db.run('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name TEXT, password TEXT)')
     }
 
     async findUser(name: string): Promise<User> {

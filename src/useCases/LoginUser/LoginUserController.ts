@@ -13,7 +13,7 @@ export class LoginUserController{
         if(session.name)throw new Error('You already logged')
 
         try{
-            await this.LoginUserCase.execute({
+            session.user = await this.LoginUserCase.execute({
                 name,
                 password
             })

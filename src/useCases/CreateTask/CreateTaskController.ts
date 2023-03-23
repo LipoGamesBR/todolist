@@ -1,21 +1,22 @@
 import { Request, Response } from "express";
 import { MySession } from "../../types/SessionTypes";
-import { CreateUserCase } from "./CreateUserCase";
+import { CreateTaskCase } from "./CreateTaskCase";
 
-export class CreateUserController{
+export class CreateTaskController{
     constructor(
-        private createUserCase: CreateUserCase
+        private createTaskCase: CreateTaskCase
     ){}
 
     async handle(request: Request, response: Response): Promise<Response>{
-        const {name, password} = request.body;
+        const {name, description} = request.body;
         const session = request.session as MySession
-        if(session.name)throw new Error('You already logged')
+        if(!session.name)throw new Error("You don't have permission")
 
         try{
-            session.user = await this.createUserCase.execute({
+            await this.createTaskCase.execute({
+                owner: session.user,
                 name,
-                password
+                description
             })
 
             

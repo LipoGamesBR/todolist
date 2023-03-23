@@ -13,8 +13,8 @@ export class LoginUserCase{
 
         if(user){
             if(await bcrypt.compare(data.password, user.password)){
-                console.log('Logged')
             }else throw new Error('Password incorrect')
         }else throw new Error('User dont exists')
+        return user.id
     }
 }
